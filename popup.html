@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <title>Stereo Swap for nicochannel.jp</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #111318;
+        --card: #1a1f29;
+        --text: #f5f7fb;
+        --muted: #a7b0c0;
+        --accent: #7dd3fc;
+        --accent-2: #38bdf8;
+        --border: rgba(255, 255, 255, 0.08);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        width: 320px;
+        min-height: 190px;
+        background: radial-gradient(circle at top, #1d2533 0%, var(--bg) 68%);
+        color: var(--text);
+        font-family: "Hiragino Sans", "Noto Sans JP", sans-serif;
+      }
+
+      .card {
+        margin: 14px;
+        padding: 16px;
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        background: rgba(255, 255, 255, 0.04);
+        backdrop-filter: blur(10px);
+      }
+
+      .row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+      }
+
+      h1 {
+        margin: 0;
+        font-size: 15px;
+        font-weight: 700;
+      }
+
+      .sub {
+        margin: 4px 0 0;
+        color: var(--muted);
+        font-size: 11px;
+      }
+
+      .status-label {
+        margin: 16px 0 6px;
+        color: var(--muted);
+        font-size: 11px;
+      }
+
+      .status {
+        margin: 0;
+        font-size: 18px;
+        font-weight: 700;
+      }
+
+      .hint {
+        margin: 10px 0 0;
+        color: var(--muted);
+        font-size: 12px;
+        line-height: 1.5;
+      }
+
+      .switch {
+        position: relative;
+        display: inline-flex;
+        width: 54px;
+        height: 32px;
+      }
+
+      .switch input {
+        display: none;
+      }
+
+      .slider {
+        position: absolute;
+        inset: 0;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.12);
+        transition: 0.18s ease;
+        cursor: pointer;
+      }
+
+      .slider::before {
+        content: "";
+        position: absolute;
+        top: 4px;
+        left: 4px;
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        background: white;
+        transition: 0.18s ease;
+      }
+
+      input:checked + .slider {
+        background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      }
+
+      input:checked + .slider::before {
+        transform: translateX(22px);
+      }
+    </style>
+  </head>
+  <body>
+    <main class="card">
+      <div class="row">
+        <div>
+          <h1>Stereo Swap</h1>
+          <p class="sub">nicochannel.jp 用</p>
+        </div>
+
+        <label class="switch">
+          <input id="enabled" type="checkbox" />
+          <span class="slider"></span>
+        </label>
+      </div>
+
+      <p class="status-label">状態</p>
+      <p id="status" class="status">左右反転 OFF</p>
+      <p id="hint" class="hint">OFF のときはサイトの通常音声のままです。</p>
+    </main>
+
+    <script src="popup.js"></script>
+  </body>
+</html>
